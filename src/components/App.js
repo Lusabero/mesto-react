@@ -11,6 +11,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import avatar from "../images/avatar.jpg";
 
 function App() {
+
     const [currentUser, setCurrentUser] = useState({ name: 'Жак-Ив Кусто', about: 'Исследователь океана', avatar: avatar });
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
@@ -18,16 +19,17 @@ function App() {
     const [selectedCard, setSelectedCard] = useState({})
     const [cards, setCards] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+
     useEffect(() => {
         api.getProfile()
             .then(setCurrentUser)
             .catch(console.log)
-    }, [])
-    useEffect(() => {
+
         api.getInitialCards()
             .then(setCards)
             .catch(console.log)
     }, [])
+
     function handleCardLike(card) {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
 
@@ -37,34 +39,40 @@ function App() {
             })
             .catch(console.log)
     }
+
     function handleCardDelete(card) {
         api.deleteCard(card._id)
             .then(() => {
-                const updateCardsList = cards.filter((c) => c._id !== card._id)
-                setCards(updateCardsList);
+                setCards(prevState => prevState.filter((c) => c._id !== card._id));
             })
             .catch((err) => {
                 console.log(err)
             })
     }
+
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true);
     }
+
     function handleEditProfileClick() {
         setIsEditProfilePopupOpen(true);
     }
+
     function handleAddPlaceClick() {
         setIsAddPlacePopupOpen(true);
     }
+
     function closeAllPopups() {
         setIsEditProfilePopupOpen(false)
         setIsAddPlacePopupOpen(false)
         setIsEditAvatarPopupOpen(false)
         setSelectedCard({})
     }
+
     function handleCardClick(card) {
         setSelectedCard(card)
     }
+
     function handleUpdateUser(user) {
         setIsLoading(true)
         api.setUserInfo(user)
@@ -77,6 +85,7 @@ function App() {
             })
             .finally(() => setIsLoading(false))
     }
+
     function handleUpdateAvatar(avatar) {
         setIsLoading(true)
         api.changeAvatar(avatar)
@@ -89,6 +98,7 @@ function App() {
             })
             .finally(() => setIsLoading(false))
     }
+
     function handleAddPlaceSubmit(newCard) {
         setIsLoading(true)
         api.setCard(newCard)
@@ -101,6 +111,7 @@ function App() {
             })
             .finally(() => setIsLoading(false))
     }
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root__wrapper">

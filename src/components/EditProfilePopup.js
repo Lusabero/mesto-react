@@ -1,29 +1,33 @@
-import React, {useState} from "react";
+import {useState, useContext, useEffect} from "react";
 import PopupWithForm from './PopupWithForm';
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
-function EditProfilePopup(props) {
-    const currentUser = React.useContext(CurrentUserContext);
+function EditProfilePopup({onClose, isOpen, isLoading, onUpdateUser}) {
+    const currentUser = useContext(CurrentUserContext);
+
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+
     function handleSubmit(e) {
         e.preventDefault();
-        props.onUpdateUser({
+        onUpdateUser({
             name,
             about: description,
         });
     }
-    React.useEffect(() => {
+
+    useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
-    }, [currentUser, props.isOpen]);
+    }, [currentUser, isOpen]);
+
     return (
         <PopupWithForm
             name="profile"
             title="Редактировать профиль"
-            isOpen={props.isOpen}
-            buttonTitle={props.isLoading ? "Сохранение..." : "Сохранить"}
-            onClose={props.onClose}
+            isOpen={isOpen}
+            buttonTitle={isLoading ? "Сохранение..." : "Сохранить"}
+            onClose={onClose}
             onSubmit={handleSubmit}
         >
             <label className="popup__label">
