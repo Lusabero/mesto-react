@@ -33,6 +33,8 @@
 @import './blocks/popup/_opened/popup_opened.css';
 @import './blocks/element/__like/_active/element__like_active.css';
 @import './blocks/element/__button-delete/element__button-delete.css';
+@import './blocks/element/__button-delete/_visible/element__button-delete_visible.css';
+@import './blocks/element/__button-delete/_hidden/element__button-delete_hidden.css';
 @import './blocks/popup/__text/popup__text.css';
 @import './blocks/popup/__wrapper/popup__wrapper.css';
 @import './blocks/popup/__img/popup__img.css';
