@@ -20,25 +20,25 @@ class Api {
 
     setUserInfo(data) {
         return fetch(`${this._url}/users/me`, {
-                method: 'PATCH',
-                headers: this._headers,
-                body: JSON.stringify({
-                    name: data.name,
-                    about: data.about
-                })
-            }
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                about: data.about
+            })
+        }
         )
             .then(this._handleRes)
     }
 
     changeAvatar(avatar) {
         return fetch(`${this._url}/users/me/avatar`, {
-                method: 'PATCH',
-                headers: this._headers,
-                body: JSON.stringify({
-                    avatar: avatar.avatar
-                })
-            }
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: avatar.avatar
+            })
+        }
         )
             .then(this._handleRes)
     }
@@ -58,13 +58,13 @@ class Api {
 
     setCard(card) {
         return fetch(`${this._url}/cards`, {
-                method: 'POST',
-                headers: this._headers,
-                body: JSON.stringify({
-                    name: card.name,
-                    link: card.link
-                })
-            }
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: card.name,
+                link: card.link
+            })
+        }
         )
             .then(this._handleRes)
     }
@@ -79,9 +79,9 @@ class Api {
 
     deleteCard(id) {
         return fetch(`${this._url}/cards/${id}`, {
-                method: 'DELETE',
-                headers: this._headers
-            }
+            method: 'DELETE',
+            headers: this._headers
+        }
         )
             .then(this._handleRes)
     }

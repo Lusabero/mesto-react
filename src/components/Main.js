@@ -21,7 +21,7 @@ function Main({onAddPlace, cards, onCardClick, onCardDelete, onCardLike, onEditA
                             <p className="profile__description">{currentUser.about}</p>
                         </div>
                         <button className="profile__button-edit" type="button"
-                            onClick={onEditProfile}></button>
+                                onClick={onEditProfile}></button>
                     </div>
                 </div>
 
